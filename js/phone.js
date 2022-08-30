@@ -7,11 +7,13 @@ const phoneHunter = () =>{
     .then(res => res.json())
     .then(data => searchbtn(data.data))
     spinner (true);
+  searchInput.value = '';
 }
 
 const searchbtn = (phones) =>{
   const mainDiv = document.getElementById('mainDiv');
   const seeMoreBtn = document.getElementById('seemoreBtn');
+  const noPhone = document.getElementById('Nophone');
   if(phones.length !== 0 ){
   mainDiv.innerText = '';
   const sixPhones = phones.slice(0,6);
@@ -20,20 +22,22 @@ const searchbtn = (phones) =>{
     newdiv.classList.add('col');
     newdiv.innerHTML =`
     <div class="card p-4 mt-4">
-        <img src="${phone.image}" class="card-img-top" alt="">
+        <img src="${phone.image}" class="card-img-top img-fluid" alt="">
         <div class="card-body">
           <h3>${phone.brand}</h3>
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <button type="button" class="btn btn-danger">Know More</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Know More
+          </button>
           </div>
     </div>
     `
     mainDiv.appendChild(newdiv);
   }
   seeMoreBtn.classList.remove('d-none');
+  noPhone.classList.add('d-none');
   }else{
-    const noPhone = document.getElementById('Nophone');
     noPhone.classList.remove('d-none');
     seeMoreBtn.classList.add('d-none');
     mainDiv.innerText = '';
@@ -62,12 +66,14 @@ const okay = (x) =>{
     newdiv.classList.add('col');
     newdiv.innerHTML =`
     <div class="card p-4 mt-4">
-        <img src="${phone.image}" class="card-img-top" alt="">
+        <img src="${phone.image}" class="card-img-top img-fluid" alt="">
         <div class="card-body">
           <h3>${phone.brand}</h3>
           <h5 class="card-title">${phone.phone_name}</h5>
           <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <button type="button" class="btn btn-danger">Know More</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Know More
+          </button>
           </div>
     </div>
     `
