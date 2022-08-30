@@ -6,10 +6,12 @@ const phoneHunter = () =>{
   fetch(url)
     .then(res => res.json())
     .then(data => searchbtn(data.data))
+    spinner (true);
 }
 
 const searchbtn = (phones) =>{
   const mainDiv = document.getElementById('mainDiv');
+  const seeMoreBtn = document.getElementById('seemoreBtn');
   if(phones.length !== 0 ){
   mainDiv.innerText = '';
   const sixPhones = phones.slice(0,6);
@@ -29,17 +31,18 @@ const searchbtn = (phones) =>{
     `
     mainDiv.appendChild(newdiv);
   }
-  const seeMoreBtn = document.getElementById('seemoreBtn');
   seeMoreBtn.classList.remove('d-none');
   }else{
     const noPhone = document.getElementById('Nophone');
     noPhone.classList.remove('d-none');
+    seeMoreBtn.classList.add('d-none');
+    mainDiv.innerText = '';
   }
-  
+  spinner (false);
 }
 
 
-
+// for see more Button...... 
 
 const seeMore = () =>{
   const searchInput = document.getElementById('searchInput');
@@ -73,4 +76,15 @@ const okay = (x) =>{
   const seeMoreBtn = document.getElementById('seemoreBtn');
   seeMoreBtn.classList.add('d-none');
 
+}
+
+
+// spinner function here ..............
+const spinner = isloading =>{
+  const spinner = document.getElementById('spinner');
+  if(isloading){
+    spinner.classList.remove('d-none');
+  }else{
+    spinner.classList.add('d-none');
+  }
 }
