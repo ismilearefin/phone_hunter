@@ -1,13 +1,14 @@
 
 const phoneHunter = () =>{
+  spinner(true);
   const searchInput = document.getElementById('searchInput');
   const searchResult = searchInput.value
   const url = (`https://openapi.programming-hero.com/api/phones?search=${searchResult}`)
   fetch(url)
     .then(res => res.json())
     .then(data => searchbtn(data.data))
-    spinner (true);
-  searchInput.value = '';
+    
+  
 }
 
 const searchbtn = (phones) =>{
